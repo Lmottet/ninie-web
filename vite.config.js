@@ -7,5 +7,7 @@ export default defineConfig({
   plugins: [
     tanstackRouter({ target: 'react', autoCodeSplitting: true }),
     react(),
-  ],
+  ],  css: {
+    postcss: './postcss.config.mjs', // 👈 force ESM config
+  },
 })
