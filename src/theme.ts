@@ -1,56 +1,50 @@
-// mantine-theme.ts
-// mantine-theme.ts
-import type { MantineThemeOverride } from '@mantine/core';
+import { DEFAULT_THEME, createTheme, mergeMantineTheme, rem } from '@mantine/core';
 
-export const theme: MantineThemeOverride = {
+const themeOverride = createTheme({
   colors: {
-    // Warm golden yellow
-    brandYellow: [
-      '#FFF9E6', // 50
-      '#FFF1C2', // 100
-      '#FFE89B', // 200
-      '#FFDD72', // 300
-      '#FDD14A', // 400
-      '#F7C948', // 500 (main)
-      '#E6B83C', // 600
-      '#D1A632', // 700
-      '#B89026', // 800
-      '#99791C' // 900
-    ],
-
-    // Deep charcoal blue-gray
-    charcoal: [
-      '#F2F4F6', // 50
-      '#E0E3E7', // 100
-      '#C6CAD1', // 200
-      '#A6ACB6', // 300
-      '#7D8291', // 400
-      '#2D3142', // 500 (main)
-      '#272B3A', // 600
-      '#212531', // 700
-      '#1B1E28', // 800
-      '#14161E' // 900
-    ],
-
-    // Muted steel blue
-    steelBlue: [
-      '#F0F6FA', // 50
-      '#D9E7F2', // 100
-      '#B8D2E6', // 200
-      '#93BAD7', // 300
-      '#6D9DC5', // 400 (main)
-      '#5E8CAF', // 500
-      '#507A98', // 600
-      '#436981', // 700
-      '#35566B', // 800
-      '#274255' // 900
-    ]
+    brandYellow: ['#FFF9E6', '#FFF1C2', '#FFE89B', '#FFDD72', '#FDD14A', '#F7C948', '#E6B83C', '#D1A632', '#B89026', '#99791C'],
+    charcoal: ['#F2F4F6', '#E0E3E7', '#C6CAD1', '#A6ACB6', '#7D8291', '#2D3142', '#272B3A', '#212531', '#1B1E28', '#14161E'],
+    steelBlue: ['#F0F6FA', '#D9E7F2', '#B8D2E6', '#93BAD7', '#6D9DC5', '#5E8CAF', '#507A98', '#436981', '#35566B', '#274255']
   },
-
-  primaryColor: 'steelBlue',
-  primaryShade: 5, // use brandYellow[500]
-
-  // optional: font + radius for modern look
+  primaryColor: 'brandYellow',
+  primaryShade: 5,
   fontFamily: 'Inter, sans-serif',
-  defaultRadius: 'md'
-};
+  fontSizes: {
+    xs: rem(12),
+    sm: rem(14),
+    md: rem(16),
+    lg: rem(18),
+    xl: rem(20)
+  },
+  defaultRadius: 'md',
+  components: {
+    Button: {
+      defaultProps: {
+        radius: 'md',
+        size: 'md'
+      }
+    },
+    Modal: {
+      defaultProps: {
+        closeOnClickOutside: false
+      }
+    },
+    Stack: {
+      defaultProps: {
+        gap: 'sm'
+      }
+    },
+    Table: {
+      defaultProps: {
+        verticalSpacing: 'sm',
+        striped: true,
+        withColumnBorders: true,
+        withRowBorders: false,
+        stickyHeader: true,
+        stickyHeaderOffset: 60
+      }
+    }
+  }
+});
+
+export const theme = mergeMantineTheme(DEFAULT_THEME, themeOverride);

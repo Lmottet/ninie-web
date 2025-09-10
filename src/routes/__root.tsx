@@ -28,7 +28,8 @@ function RootComponent() {
               return (
                 <NavLink
                   component={Link}
-                  color='white'
+                  c='charcoal.7'
+                  color='charcoal.7'
                   w='150'
                   key={to}
                   label={label}

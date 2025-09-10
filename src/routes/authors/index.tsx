@@ -48,5 +48,5 @@ const AuthorTable = ({ authors }: { authors: IAuthor[] }) => {
     head: ['ID', 'First name', 'Last name'],
     body: authors.map((a) => [a.id, a.firstName, a.lastName])
   };
-  return <Table data={data} />;
+  return <Table data={data} striped stickyHeader />;
 };
