@@ -1,4 +1,4 @@
-import { CreateAuthorRequest } from '../../types/CreateAuthorRequest';
+import type { CreateAuthorRequest } from '../../types/CreateAuthorRequest';
 import { authorApi } from '../api/authorApi';
 import { QueryKeys } from './queryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';

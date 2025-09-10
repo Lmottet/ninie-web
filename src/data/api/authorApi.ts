@@ -1,5 +1,5 @@
-import { CreateAuthorRequest } from '../../types/CreateAuthorRequest';
-import { IAuthor } from '../../types/IAuthor';
+import type { CreateAuthorRequest } from '../../types/CreateAuthorRequest';
+import type { IAuthor } from '../../types/IAuthor';
 import axios from 'redaxios';
 
 export const authorApi = {

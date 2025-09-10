@@ -1,8 +1,8 @@
 import { useCreateAuthor } from '../../data/queries/useCreateAuthor';
-import { CreateAuthorRequest } from '../../types/CreateAuthorRequest';
+import type { CreateAuthorRequest } from '../../types/CreateAuthorRequest';
 import { Button, Fieldset, Stack, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { ContextModalProps } from '@mantine/modals';
+import type { ContextModalProps } from '@mantine/modals';
 
 export const CreateAuthorModal = ({ context, id }: ContextModalProps) => {
   const createAuthorForm = useForm<CreateAuthorRequest>();

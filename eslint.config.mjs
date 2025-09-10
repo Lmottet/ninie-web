@@ -15,7 +15,7 @@ const compat = new FlatCompat({
 
 export default defineConfig([
   eslintPluginsSecurity.configs.recommended,
-  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier', 'plugin:@tanstack/query/recommended'),
+  ...compat.extends('prettier', 'plugin:@tanstack/query/recommended'),
   {
     files: ['**/*.ts', '**/*.tsx'],
     plugins: {
@@ -32,7 +32,6 @@ export default defineConfig([
       'unicorn/no-array-reduce': 'off',
       "unicorn/number-literal-case": "off",
       'sonarjs/todo-tag': 'warn',
-      'react/jsx-no-literals': 'error',
       'no-restricted-syntax': [
         'error',
         {
