@@ -1,37 +1,37 @@
-import { authorsQueryOptions } from '../../data/queries/authors/useAuthors';
+import { seriesQueryOptions } from '../../data/queries/series/useSeries';
 import { queryClient } from '../../main';
-import type { IAuthor } from '../../types/api/responses/IAuthor';
+import type { ISeries } from '../../types/api/responses/ISeries';
 import { Button, Stack, Table, type TableData } from '@mantine/core';
 import { modals } from '@mantine/modals';
 import { IconPlus } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/authors/')({
+export const Route = createFileRoute('/series/')({
   component: RouteComponent,
-  loader: () => queryClient.ensureQueryData(authorsQueryOptions)
+  loader: () => queryClient.ensureQueryData(seriesQueryOptions)
 });
 
 function RouteComponent() {
-  const { data: authors } = useSuspenseQuery(authorsQueryOptions);
+  const { data: series } = useSuspenseQuery(seriesQueryOptions);
 
   return (
     <Stack>
-      <CreateAuthorButton />
-      <AuthorTable authors={authors} />
+      <CreateSeriesButton />
+      <SeriesTable series={series} />
     </Stack>
   );
 }
 
-const CreateAuthorButton = () => {
+const CreateSeriesButton = () => {
   return (
     <Button
       color='brandYellow'
       ml='auto'
       onClick={() =>
         modals.openContextModal({
-          modal: 'createAuthorModal',
-          title: 'Create author',
+          modal: 'createSeriesModal',
+          title: 'Create series',
           size: 'lg',
           innerProps: {}
         })
@@ -42,11 +42,11 @@ const CreateAuthorButton = () => {
   );
 };
 
-const AuthorTable = ({ authors }: { authors: IAuthor[] }) => {
+const SeriesTable = ({ series }: { series: ISeries[] }) => {
   const data: TableData = {
-    caption: 'All authors',
-    head: ['ID', 'First name', 'Last name'],
-    body: authors.map((a) => [a.id, a.firstName, a.lastName])
+    caption: 'All series',
+    head: ['ID', 'Title', 'IsFinished'],
+    body: series.map((a) => [a.id, a.title, a.isFinished])
   };
   return <Table data={data} />;
 };

@@ -13,7 +13,9 @@ import { Route as PopularRouteImport } from './routes/popular'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SeriesIndexRouteImport } from './routes/series/index'
 import { Route as CategoriesIndexRouteImport } from './routes/categories/index'
+import { Route as BooksIndexRouteImport } from './routes/books/index'
 import { Route as AuthorsIndexRouteImport } from './routes/authors/index'
 import { Route as CategoriesCategoryIdRouteImport } from './routes/categories/$categoryId'
 
@@ -37,9 +39,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SeriesIndexRoute = SeriesIndexRouteImport.update({
+  id: '/series/',
+  path: '/series/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
   id: '/categories/',
   path: '/categories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BooksIndexRoute = BooksIndexRouteImport.update({
+  id: '/books/',
+  path: '/books/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthorsIndexRoute = AuthorsIndexRouteImport.update({
@@ -60,7 +72,9 @@ export interface FileRoutesByFullPath {
   '/popular': typeof PopularRoute
   '/categories/$categoryId': typeof CategoriesCategoryIdRoute
   '/authors': typeof AuthorsIndexRoute
+  '/books': typeof BooksIndexRoute
   '/categories': typeof CategoriesIndexRoute
+  '/series': typeof SeriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,7 +83,9 @@ export interface FileRoutesByTo {
   '/popular': typeof PopularRoute
   '/categories/$categoryId': typeof CategoriesCategoryIdRoute
   '/authors': typeof AuthorsIndexRoute
+  '/books': typeof BooksIndexRoute
   '/categories': typeof CategoriesIndexRoute
+  '/series': typeof SeriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,7 +95,9 @@ export interface FileRoutesById {
   '/popular': typeof PopularRoute
   '/categories/$categoryId': typeof CategoriesCategoryIdRoute
   '/authors/': typeof AuthorsIndexRoute
+  '/books/': typeof BooksIndexRoute
   '/categories/': typeof CategoriesIndexRoute
+  '/series/': typeof SeriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,7 +108,9 @@ export interface FileRouteTypes {
     | '/popular'
     | '/categories/$categoryId'
     | '/authors'
+    | '/books'
     | '/categories'
+    | '/series'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -99,7 +119,9 @@ export interface FileRouteTypes {
     | '/popular'
     | '/categories/$categoryId'
     | '/authors'
+    | '/books'
     | '/categories'
+    | '/series'
   id:
     | '__root__'
     | '/'
@@ -108,7 +130,9 @@ export interface FileRouteTypes {
     | '/popular'
     | '/categories/$categoryId'
     | '/authors/'
+    | '/books/'
     | '/categories/'
+    | '/series/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,7 +142,9 @@ export interface RootRouteChildren {
   PopularRoute: typeof PopularRoute
   CategoriesCategoryIdRoute: typeof CategoriesCategoryIdRoute
   AuthorsIndexRoute: typeof AuthorsIndexRoute
+  BooksIndexRoute: typeof BooksIndexRoute
   CategoriesIndexRoute: typeof CategoriesIndexRoute
+  SeriesIndexRoute: typeof SeriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -151,11 +177,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/series/': {
+      id: '/series/'
+      path: '/series'
+      fullPath: '/series'
+      preLoaderRoute: typeof SeriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/categories/': {
       id: '/categories/'
       path: '/categories'
       fullPath: '/categories'
       preLoaderRoute: typeof CategoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/books/': {
+      id: '/books/'
+      path: '/books'
+      fullPath: '/books'
+      preLoaderRoute: typeof BooksIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/authors/': {
@@ -182,7 +222,9 @@ const rootRouteChildren: RootRouteChildren = {
   PopularRoute: PopularRoute,
   CategoriesCategoryIdRoute: CategoriesCategoryIdRoute,
   AuthorsIndexRoute: AuthorsIndexRoute,
+  BooksIndexRoute: BooksIndexRoute,
   CategoriesIndexRoute: CategoriesIndexRoute,
+  SeriesIndexRoute: SeriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

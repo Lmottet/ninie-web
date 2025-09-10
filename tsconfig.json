@@ -9,9 +9,6 @@
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    },
     "resolveJsonModule": true,
     "verbatimModuleSyntax": true
   }, 

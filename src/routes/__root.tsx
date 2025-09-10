@@ -18,9 +18,9 @@ function RootComponent() {
             {(
               [
                 ['/', 'Home'],
-                ['/popular', 'Popular'],
-                ['/categories', 'Categories'],
                 ['/authors', 'Authors'],
+                ['/series', 'Series'],
+                ['/books', 'Books'],
                 ['/about', 'About'],
                 ['/contact', 'Contact']
               ] as const

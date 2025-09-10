@@ -1,5 +1,5 @@
-import { useCreateAuthor } from '../../data/queries/useCreateAuthor';
-import type { CreateAuthorRequest } from '../../types/CreateAuthorRequest';
+import { useCreateAuthor } from '../../data/queries/authors/useCreateAuthor';
+import type { CreateAuthorRequest } from '../../types/api/requests/CreateAuthorRequest';
 import { Button, Fieldset, Stack, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import type { ContextModalProps } from '@mantine/modals';

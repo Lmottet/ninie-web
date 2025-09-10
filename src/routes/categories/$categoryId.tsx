@@ -37,10 +37,7 @@ function InvoiceComponent() {
   }, [notes]);
 
   return (
-    <form
-    
-      className='p-2 space-y-2'
-    >
+    <form className='p-2 space-y-2'>
       <div>
         <Link
           from={Route.fullPath}
@@ -71,8 +68,7 @@ function InvoiceComponent() {
           </>
         ) : null}
       </div>
-      <div>
-      </div>
+      <div></div>
     </form>
   );
 }

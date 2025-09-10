@@ -1,6 +1,6 @@
-import type { CreateAuthorRequest } from '../../types/CreateAuthorRequest';
-import { authorApi } from '../api/authorApi';
-import { QueryKeys } from './queryKeys';
+import type { CreateAuthorRequest } from '../../../types/api/requests/CreateAuthorRequest';
+import { authorApi } from '../../api/authorApi';
+import { QueryKeys } from '../queryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export function useCreateAuthor(onSuccess: () => void) {
