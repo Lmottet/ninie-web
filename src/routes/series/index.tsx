@@ -1,24 +1,30 @@
+import { SearchBar } from '../../components/SearchBar';
 import { seriesQueryOptions } from '../../data/queries/series/useSeries';
 import { queryClient } from '../../main';
 import type { ISeries } from '../../types/api/responses/ISeries';
-import { Button, Stack, Table, type TableData } from '@mantine/core';
+import { Button, Group, Stack, Table, type TableData } from '@mantine/core';
+import { useDebouncedState } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import { IconPlus } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/series/')({
-  component: RouteComponent,
+  component: SeriesPage,
   loader: () => queryClient.ensureQueryData(seriesQueryOptions)
 });
 
-function RouteComponent() {
+function SeriesPage() {
   const { data: series } = useSuspenseQuery(seriesQueryOptions);
+  const [search, setSearch] = useDebouncedState<string | null>(null, 200);
 
   return (
     <Stack>
-      <CreateSeriesButton />
-      <SeriesTable series={series} />
+      <Group align='flex-end'>
+        <SearchBar label='Search series' setSearch={setSearch} />
+        <CreateSeriesButton />
+      </Group>
+      <SeriesTable series={series.filter((s) => search === null || s.title.includes(search))} />
     </Stack>
   );
 }
