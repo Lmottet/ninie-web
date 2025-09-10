@@ -14,7 +14,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategoriesIndexRouteImport } from './routes/categories/index'
-import { Route as BrowseIndexRouteImport } from './routes/browse/index'
+import { Route as AuthorsIndexRouteImport } from './routes/authors/index'
 import { Route as CategoriesCategoryIdRouteImport } from './routes/categories/$categoryId'
 
 const PopularRoute = PopularRouteImport.update({
@@ -42,9 +42,9 @@ const CategoriesIndexRoute = CategoriesIndexRouteImport.update({
   path: '/categories/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BrowseIndexRoute = BrowseIndexRouteImport.update({
-  id: '/browse/',
-  path: '/browse/',
+const AuthorsIndexRoute = AuthorsIndexRouteImport.update({
+  id: '/authors/',
+  path: '/authors/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriesCategoryIdRoute = CategoriesCategoryIdRouteImport.update({
@@ -59,7 +59,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/popular': typeof PopularRoute
   '/categories/$categoryId': typeof CategoriesCategoryIdRoute
-  '/browse': typeof BrowseIndexRoute
+  '/authors': typeof AuthorsIndexRoute
   '/categories': typeof CategoriesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -68,7 +68,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/popular': typeof PopularRoute
   '/categories/$categoryId': typeof CategoriesCategoryIdRoute
-  '/browse': typeof BrowseIndexRoute
+  '/authors': typeof AuthorsIndexRoute
   '/categories': typeof CategoriesIndexRoute
 }
 export interface FileRoutesById {
@@ -78,7 +78,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/popular': typeof PopularRoute
   '/categories/$categoryId': typeof CategoriesCategoryIdRoute
-  '/browse/': typeof BrowseIndexRoute
+  '/authors/': typeof AuthorsIndexRoute
   '/categories/': typeof CategoriesIndexRoute
 }
 export interface FileRouteTypes {
@@ -89,7 +89,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/popular'
     | '/categories/$categoryId'
-    | '/browse'
+    | '/authors'
     | '/categories'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -98,7 +98,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/popular'
     | '/categories/$categoryId'
-    | '/browse'
+    | '/authors'
     | '/categories'
   id:
     | '__root__'
@@ -107,7 +107,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/popular'
     | '/categories/$categoryId'
-    | '/browse/'
+    | '/authors/'
     | '/categories/'
   fileRoutesById: FileRoutesById
 }
@@ -117,7 +117,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   PopularRoute: typeof PopularRoute
   CategoriesCategoryIdRoute: typeof CategoriesCategoryIdRoute
-  BrowseIndexRoute: typeof BrowseIndexRoute
+  AuthorsIndexRoute: typeof AuthorsIndexRoute
   CategoriesIndexRoute: typeof CategoriesIndexRoute
 }
 
@@ -158,11 +158,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/browse/': {
-      id: '/browse/'
-      path: '/browse'
-      fullPath: '/browse'
-      preLoaderRoute: typeof BrowseIndexRouteImport
+    '/authors/': {
+      id: '/authors/'
+      path: '/authors'
+      fullPath: '/authors'
+      preLoaderRoute: typeof AuthorsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/categories/$categoryId': {
@@ -181,7 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   PopularRoute: PopularRoute,
   CategoriesCategoryIdRoute: CategoriesCategoryIdRoute,
-  BrowseIndexRoute: BrowseIndexRoute,
+  AuthorsIndexRoute: AuthorsIndexRoute,
   CategoriesIndexRoute: CategoriesIndexRoute,
 }
 export const routeTree = rootRouteImport

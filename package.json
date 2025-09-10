@@ -20,6 +20,7 @@
     "@mantine/nprogress": "^8.3",
     "@mantine/spotlight": "^8.3",
     "@mantine/tiptap": "^8.3",
+    "@tabler/icons-react": "^3.34.1",
     "@tanstack/react-query": "^5.87.1",
     "@tanstack/react-router": "^1.131",
     "@tanstack/react-router-devtools": "^1.131",

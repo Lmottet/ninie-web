@@ -7,11 +7,15 @@ import {
 } from "@tanstack/react-router";
 import { auth } from "./utils/auth";
 import { routeTree } from "./routeTree.gen";
-import "@mantine/core/styles.css";
 
+import "@mantine/carousel/styles.css";
+import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Loader, MantineProvider } from "@mantine/core";
 import { theme } from "./theme";
+import ModalsConfiguration from "./components/modals/modals";
+import { ModalsProvider } from "@mantine/modals";
 
 export const queryClient = new QueryClient();
 
@@ -20,7 +24,7 @@ const router = createRouter({
   defaultPendingComponent: () => <Loader />,
   defaultErrorComponent: ({ error }) => <ErrorComponent error={error} />,
   context: {
-    auth: undefined!, // We'll inject this when we render
+    auth: undefined!,
   },
   defaultPreload: "intent",
   defaultPreloadStaleTime: 0,
@@ -52,7 +56,9 @@ if (!rootElement.innerHTML) {
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <MantineProvider theme={theme}>
-          <App />
+          <ModalsProvider modals={ModalsConfiguration}>
+            <App />
+          </ModalsProvider>
         </MantineProvider>
       </QueryClientProvider>
     </React.StrictMode>
