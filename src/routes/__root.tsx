@@ -20,7 +20,7 @@ function RootComponent() {
                 ['/', 'Home'],
                 ['/popular', 'Popular'],
                 ['/categories', 'Categories'],
-                ['/browse', 'Browse'],
+                ['/authors', 'Authors'],
                 ['/about', 'About'],
                 ['/contact', 'Contact']
               ] as const

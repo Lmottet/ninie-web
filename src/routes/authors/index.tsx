@@ -1,7 +1,7 @@
 import { authorsQueryOptions } from '../../data/queries/useAuthors';
 import { queryClient } from '../../main';
-import { IAuthor } from '../../types/IAuthor';
-import { Button, Stack, Table, TableData } from '@mantine/core';
+import type { IAuthor } from '../../types/IAuthor';
+import { Button, Stack, Table, type TableData } from '@mantine/core';
 import { modals } from '@mantine/modals';
 import { IconPlus } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
