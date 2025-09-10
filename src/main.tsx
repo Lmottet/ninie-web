@@ -1,21 +1,17 @@
-import * as React from "react";
-import ReactDOM from "react-dom/client";
-import {
-  ErrorComponent,
-  RouterProvider,
-  createRouter,
-} from "@tanstack/react-router";
-import { auth } from "./utils/auth";
-import { routeTree } from "./routeTree.gen";
+import ModalsConfiguration from './components/modals/modals';
+import { routeTree } from './routeTree.gen';
+import { theme } from './theme';
+import { auth } from './utils/auth';
+import { Loader, MantineProvider } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ErrorComponent, RouterProvider, createRouter } from '@tanstack/react-router';
+import * as React from 'react';
+import ReactDOM from 'react-dom/client';
 
-import "@mantine/carousel/styles.css";
-import "@mantine/core/styles.css";
-import "@mantine/dates/styles.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Loader, MantineProvider } from "@mantine/core";
-import { theme } from "./theme";
-import ModalsConfiguration from "./components/modals/modals";
-import { ModalsProvider } from "@mantine/modals";
+import '@mantine/carousel/styles.css';
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
 
 export const queryClient = new QueryClient();
 
@@ -24,14 +20,14 @@ const router = createRouter({
   defaultPendingComponent: () => <Loader />,
   defaultErrorComponent: ({ error }) => <ErrorComponent error={error} />,
   context: {
-    auth: undefined!,
+    auth: undefined!
   },
-  defaultPreload: "intent",
+  defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,
-  scrollRestoration: true,
+  scrollRestoration: true
 });
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router;
   }
@@ -41,15 +37,15 @@ function App() {
   return (
     <RouterProvider
       router={router}
-      defaultPreload="intent"
+      defaultPreload='intent'
       context={{
-        auth,
+        auth
       }}
     />
   );
 }
 
-const rootElement = document.getElementById("app")!;
+const rootElement = document.getElementById('app')!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(

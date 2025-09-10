@@ -1,5 +1,4 @@
 // mantine-theme.ts
-
 import { MantineThemeOverride } from '@mantine/core';
 
 export const theme: MantineThemeOverride = {
@@ -15,7 +14,7 @@ export const theme: MantineThemeOverride = {
       '#E6B83C', // 600
       '#D1A632', // 700
       '#B89026', // 800
-      '#99791C', // 900
+      '#99791C' // 900
     ],
 
     // Deep charcoal blue-gray
@@ -29,7 +28,7 @@ export const theme: MantineThemeOverride = {
       '#272B3A', // 600
       '#212531', // 700
       '#1B1E28', // 800
-      '#14161E', // 900
+      '#14161E' // 900
     ],
 
     // Muted steel blue
@@ -43,8 +42,8 @@ export const theme: MantineThemeOverride = {
       '#507A98', // 600
       '#436981', // 700
       '#35566B', // 800
-      '#274255', // 900
-    ],
+      '#274255' // 900
+    ]
   },
 
   primaryColor: 'steelBlue',
@@ -52,5 +51,5 @@ export const theme: MantineThemeOverride = {
 
   // optional: font + radius for modern look
   fontFamily: 'Inter, sans-serif',
-  defaultRadius: 'md',
+  defaultRadius: 'md'
 };

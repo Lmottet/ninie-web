@@ -1,31 +1,19 @@
-import { Button, Fieldset, Stack, TextInput } from "@mantine/core";
-import { ContextModalProps } from "@mantine/modals";
-import { useForm } from "@mantine/form";
-import { CreateAuthorRequest } from "../../types/CreateAuthorRequest";
-import { useCreateAuthor } from "../../data/queries/useCreateAuthor";
+import { useCreateAuthor } from '../../data/queries/useCreateAuthor';
+import { CreateAuthorRequest } from '../../types/CreateAuthorRequest';
+import { Button, Fieldset, Stack, TextInput } from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { ContextModalProps } from '@mantine/modals';
 
 export const CreateAuthorModal = ({ context, id }: ContextModalProps) => {
   const createAuthorForm = useForm<CreateAuthorRequest>();
-  const { mutate: createAuthor } = useCreateAuthor(() =>
-    context.closeModal(id)
-  );
+  const { mutate: createAuthor } = useCreateAuthor(() => context.closeModal(id));
   return (
-    <Fieldset legend="new author">
-      <form
-        onSubmit={createAuthorForm.onSubmit((formData) =>
-          createAuthor(formData)
-        )}
-      >
+    <Fieldset legend='new author'>
+      <form onSubmit={createAuthorForm.onSubmit((formData) => createAuthor(formData))}>
         <Stack>
-          <TextInput
-            label="first name"
-            {...createAuthorForm.getInputProps("firstName")}
-          />
-          <TextInput
-            label="last name"
-            {...createAuthorForm.getInputProps("lastName")}
-          />
-          <Button type="submit" color="brandYellow" ml="auto">
+          <TextInput label='first name' {...createAuthorForm.getInputProps('firstName')} />
+          <TextInput label='last name' {...createAuthorForm.getInputProps('lastName')} />
+          <Button type='submit' color='brandYellow' ml='auto'>
             Create
           </Button>
         </Stack>

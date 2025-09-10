@@ -1,4 +1,4 @@
-import { CreateAuthorModal } from "./CreateAuthorModal";
+import { CreateAuthorModal } from './CreateAuthorModal';
 
 const ModalsConfiguration = {
   createAuthorModal: CreateAuthorModal

@@ -1,39 +1,35 @@
-import {
-  Link,
-  Outlet,
-  createRootRouteWithContext,
-} from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import type { Auth } from "../utils/auth";
-import { AppShell, Center, Container, Group, NavLink } from "@mantine/core";
+import type { Auth } from '../utils/auth';
+import { AppShell, Center, Container, Group, NavLink } from '@mantine/core';
+import { Link, Outlet, createRootRouteWithContext } from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
 export const Route = createRootRouteWithContext<{
   auth: Auth;
 }>()({
-  component: RootComponent,
+  component: RootComponent
 });
 
 function RootComponent() {
   return (
-    <AppShell header={{ height: 60 }} padding="md">
-      <AppShell.Header bg="brandYellow">
+    <AppShell header={{ height: 60 }} padding='md'>
+      <AppShell.Header bg='brandYellow'>
         <Center>
-          <Group h="100%" px="md" mt="md">
+          <Group h='100%' px='md' mt='md'>
             {(
               [
-                ["/", "Home"],
-                ["/popular", "Popular"],
-                ["/categories", "Categories"],
-                ["/browse", "Browse"],
-                ["/about", "About"],
-                ["/contact", "Contact"],
+                ['/', 'Home'],
+                ['/popular', 'Popular'],
+                ['/categories', 'Categories'],
+                ['/browse', 'Browse'],
+                ['/about', 'About'],
+                ['/contact', 'Contact']
               ] as const
             ).map(([to, label]) => {
               return (
                 <NavLink
                   component={Link}
-                  color="white"
-                  w="150"
+                  color='white'
+                  w='150'
                   key={to}
                   label={label}
                   to={to}
@@ -44,7 +40,7 @@ function RootComponent() {
                       // exact: to === '.',
                     }
                   }
-                  preload="intent"
+                  preload='intent'
                 />
               );
             })}
@@ -52,11 +48,11 @@ function RootComponent() {
         </Center>
       </AppShell.Header>
       <AppShell.Main>
-        <Container size="xl">
+        <Container size='xl'>
           <Outlet />
         </Container>
       </AppShell.Main>
-      <TanStackRouterDevtools position="bottom-right" />
+      <TanStackRouterDevtools position='bottom-right' />
     </AppShell>
   );
 }
