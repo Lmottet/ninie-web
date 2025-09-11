@@ -8,7 +8,7 @@ import type { ContextModalProps } from '@mantine/modals';
 
 type CreateBookForm = Omit<CreateBookRequest, 'authorId' | 'seriesId'> & { authorId: string; seriesId: string | null };
 
-const CreateBookModal = ({ context, id }: ContextModalProps) => {
+const CreateReviewModal = ({ context, id }: ContextModalProps) => {
   const createBookForm = useForm<CreateBookForm>();
   const { mutate: createBook } = useCreateBook(() => context.closeModal(id));
   return (
@@ -32,4 +32,4 @@ const CreateBookModal = ({ context, id }: ContextModalProps) => {
   );
 };
 
-export default CreateBookModal;
+export default CreateReviewModal;

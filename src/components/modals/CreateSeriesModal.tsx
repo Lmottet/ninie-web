@@ -7,7 +7,7 @@ import type { ContextModalProps } from '@mantine/modals';
 
 type CreateSeriesForm = Omit<CreateSeriesRequest, 'authorId'> & { authorId: string };
 
-export const CreateSeriesModal = ({ context, id }: ContextModalProps) => {
+const CreateSeriesModal = ({ context, id }: ContextModalProps) => {
   const createSeriesForm = useForm<CreateSeriesForm>();
   const { mutate: createSeries } = useCreateSeries(() => context.closeModal(id));
   return (
@@ -25,3 +25,5 @@ export const CreateSeriesModal = ({ context, id }: ContextModalProps) => {
     </Fieldset>
   );
 };
+
+export default CreateSeriesModal;

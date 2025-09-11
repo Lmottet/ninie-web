@@ -2,12 +2,12 @@ import { SearchBar } from '../../components/SearchBar';
 import { booksQueryOptions } from '../../data/queries/books/useBooks';
 import { queryClient } from '../../main';
 import type { IBook } from '../../types/api/responses/IBook';
-import { Button, Group, Stack, Table, type TableData } from '@mantine/core';
+import { ActionIcon, Button, Group, Stack, Table, type TableData } from '@mantine/core';
 import { useDebouncedState } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
-import { IconPlus } from '@tabler/icons-react';
+import { IconPlus, IconZoom } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { createFileRoute } from '@tanstack/react-router';
+import { Link, createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/books/')({
   component: BookPage,
@@ -52,7 +52,15 @@ const BookTable = ({ books }: { books: IBook[] }) => {
   const data: TableData = {
     caption: 'All books',
     head: ['ID', 'Title', 'Tome'],
-    body: books.map((a) => [a.id, a.title, a.tome])
+    body: books.map((a) => [<DetailIcon to={`/books/${a.id}`} key={a.id} />, a.title, a.tome])
   };
   return <Table data={data} striped stickyHeader />;
+};
+
+const DetailIcon = ({ to }: { to: string }) => {
+  return (
+    <ActionIcon component={Link} to={to} preload='intent' variant='transparent'>
+      <IconZoom />
+    </ActionIcon>
+  );
 };

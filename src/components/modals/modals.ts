@@ -1,10 +1,14 @@
-import { CreateAuthorModal } from './CreateAuthorModal';
-import { CreateBookModal } from './CreateBookModal';
-import { CreateSeriesModal } from './CreateSeriesModal';
+import React from 'react';
+
+const CreateAuthorModal = React.lazy(() => import('./CreateAuthorModal'));
+const CreateBookModal = React.lazy(() => import('./CreateBookModal'));
+const CreateReviewModal = React.lazy(() => import('./CreateReviewModal'));
+const CreateSeriesModal = React.lazy(() => import('./CreateSeriesModal'));
 
 const ModalsConfiguration = {
   createAuthorModal: CreateAuthorModal,
   createBookModal: CreateBookModal,
+  createReviewModal: CreateReviewModal,
   createSeriesModal: CreateSeriesModal
 };
 

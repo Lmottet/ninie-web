@@ -4,7 +4,7 @@ import { Button, Fieldset, Stack, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import type { ContextModalProps } from '@mantine/modals';
 
-export const CreateAuthorModal = ({ context, id }: ContextModalProps) => {
+const CreateAuthorModal = ({ context, id }: ContextModalProps) => {
   const createAuthorForm = useForm<CreateAuthorRequest>();
   const { mutate: createAuthor } = useCreateAuthor(() => context.closeModal(id));
   return (
@@ -21,3 +21,5 @@ export const CreateAuthorModal = ({ context, id }: ContextModalProps) => {
     </Fieldset>
   );
 };
+
+export default CreateAuthorModal;
