@@ -24,7 +24,7 @@ function BooksPage() {
         <SearchBar label='Search books' setSearch={setSearch} />
         <CreateBookButton />
       </Group>
-      <BookTable books={books/*.filter((b) => search === null || b.title.includes(search))*/} />
+      <BookTable books={books.filter((b) => search === null || b.title.includes(search))} />
     </Stack>
   );
 }
