@@ -10,11 +10,11 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { Link, createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/books/')({
-  component: BookPage,
+  component: BooksPage,
   loader: () => queryClient.ensureQueryData(booksQueryOptions)
 });
 
-function BookPage() {
+function BooksPage() {
   const { data: books } = useSuspenseQuery(booksQueryOptions);
   const [search, setSearch] = useDebouncedState<string | null>(null, 200);
 
@@ -24,7 +24,7 @@ function BookPage() {
         <SearchBar label='Search books' setSearch={setSearch} />
         <CreateBookButton />
       </Group>
-      <BookTable books={books.filter((b) => search === null || b.title.includes(search))} />
+      <BookTable books={books/*.filter((b) => search === null || b.title.includes(search))*/} />
     </Stack>
   );
 }

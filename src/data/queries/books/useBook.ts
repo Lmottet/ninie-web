@@ -4,7 +4,7 @@ import { queryOptions, useQuery } from '@tanstack/react-query';
 
 export const bookQueryOptions = (bookId: number) =>
   queryOptions({
-    queryKey: QueryKeys.books,
+    queryKey: QueryKeys.book(bookId),
     queryFn: () => bookApi.get(bookId)
   });
 

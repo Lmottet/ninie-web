@@ -14,10 +14,10 @@ export const Route = createFileRoute('/books/$bookId')({
     stringify: ({ bookId }) => ({ bookId: `${bookId}` })
   },
   loader: ({ params }) => queryClient.ensureQueryData(bookQueryOptions(params.bookId)),
-  component: InvoiceComponent
+  component: BookPage
 });
 
-function InvoiceComponent() {
+function BookPage() {
   const { bookId } = Route.useParams();
   const { data: book } = useSuspenseQuery(bookQueryOptions(bookId));
 
