@@ -1,7 +1,7 @@
-import { SearchBar } from '../../components/SearchBar';
-import { booksQueryOptions } from '../../data/queries/books/useBooks';
-import { queryClient } from '../../main';
-import type { IBook } from '../../types/api/responses/IBook';
+import { SearchBar } from '../../../components/SearchBar';
+import { booksQueryOptions } from '../../../data/queries/books/useBooks';
+import { queryClient } from '../../../main';
+import type { IBook } from '../../../types/api/responses/IBook';
 import { ActionIcon, Button, Group, Stack, Table, type TableData } from '@mantine/core';
 import { useDebouncedState } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
@@ -9,7 +9,7 @@ import { IconPlus, IconZoom } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Link, createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/books/')({
+export const Route = createFileRoute('/_authenticated/books/')({
   component: BooksPage,
   loader: () => queryClient.ensureQueryData(booksQueryOptions)
 });

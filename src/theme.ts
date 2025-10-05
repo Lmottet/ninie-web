@@ -43,6 +43,14 @@ const themeOverride = createTheme({
         stickyHeader: true,
         stickyHeaderOffset: 60
       }
+    },
+    Paper: {
+      defaultProps: {
+        radius: 'md',
+        shadow: 'xs',
+        p: 'md',
+        withBorder: true
+      }
     }
   }
 });

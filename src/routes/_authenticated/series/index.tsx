@@ -1,7 +1,7 @@
-import { SearchBar } from '../../components/SearchBar';
-import { seriesQueryOptions } from '../../data/queries/series/useSeries';
-import { queryClient } from '../../main';
-import type { ISeries } from '../../types/api/responses/ISeries';
+import { SearchBar } from '../../../components/SearchBar';
+import { seriesQueryOptions } from '../../../data/queries/series/useSeries';
+import { queryClient } from '../../../main';
+import type { ISeries } from '../../../types/api/responses/ISeries';
 import { Button, Group, Stack, Table, type TableData } from '@mantine/core';
 import { useDebouncedState } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
@@ -9,7 +9,7 @@ import { IconPlus } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/series/')({
+export const Route = createFileRoute('/_authenticated/series/')({
   component: SeriesPage,
   loader: () => queryClient.ensureQueryData(seriesQueryOptions)
 });

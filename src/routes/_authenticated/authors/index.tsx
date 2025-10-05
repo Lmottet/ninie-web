@@ -1,7 +1,7 @@
-import { SearchBar } from '../../components/SearchBar';
-import { authorsQueryOptions } from '../../data/queries/authors/useAuthors';
-import { queryClient } from '../../main';
-import type { IAuthor } from '../../types/api/responses/IAuthor';
+import { SearchBar } from '../../../components/SearchBar';
+import { authorsQueryOptions } from '../../../data/queries/authors/useAuthors';
+import { queryClient } from '../../../main';
+import type { IAuthor } from '../../../types/api/responses/IAuthor';
 import { Button, Group, Stack, Table, type TableData } from '@mantine/core';
 import { useDebouncedState } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
@@ -9,7 +9,7 @@ import { IconPlus } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/authors/')({
+export const Route = createFileRoute('/_authenticated/authors/')({
   component: AuthorPage,
   loader: () => queryClient.ensureQueryData(authorsQueryOptions)
 });

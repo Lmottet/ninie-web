@@ -9,78 +9,115 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SeriesIndexRouteImport } from './routes/series/index'
-import { Route as BooksIndexRouteImport } from './routes/books/index'
-import { Route as AuthorsIndexRouteImport } from './routes/authors/index'
-import { Route as BooksBookIdRouteImport } from './routes/books/$bookId'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as AuthenticatedSeriesIndexRouteImport } from './routes/_authenticated/series/index'
+import { Route as AuthenticatedBooksIndexRouteImport } from './routes/_authenticated/books/index'
+import { Route as AuthenticatedAuthorsIndexRouteImport } from './routes/_authenticated/authors/index'
+import { Route as AuthenticatedBooksBookIdRouteImport } from './routes/_authenticated/books/$bookId'
 
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SeriesIndexRoute = SeriesIndexRouteImport.update({
-  id: '/series/',
-  path: '/series/',
+const LoginIndexRoute = LoginIndexRouteImport.update({
+  id: '/login/',
+  path: '/login/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BooksIndexRoute = BooksIndexRouteImport.update({
+const AuthenticatedSeriesIndexRoute =
+  AuthenticatedSeriesIndexRouteImport.update({
+    id: '/series/',
+    path: '/series/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedBooksIndexRoute = AuthenticatedBooksIndexRouteImport.update({
   id: '/books/',
   path: '/books/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
-const AuthorsIndexRoute = AuthorsIndexRouteImport.update({
-  id: '/authors/',
-  path: '/authors/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BooksBookIdRoute = BooksBookIdRouteImport.update({
-  id: '/books/$bookId',
-  path: '/books/$bookId',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const AuthenticatedAuthorsIndexRoute =
+  AuthenticatedAuthorsIndexRouteImport.update({
+    id: '/authors/',
+    path: '/authors/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedBooksBookIdRoute =
+  AuthenticatedBooksBookIdRouteImport.update({
+    id: '/books/$bookId',
+    path: '/books/$bookId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/books/$bookId': typeof BooksBookIdRoute
-  '/authors': typeof AuthorsIndexRoute
-  '/books': typeof BooksIndexRoute
-  '/series': typeof SeriesIndexRoute
+  '/login': typeof LoginIndexRoute
+  '/books/$bookId': typeof AuthenticatedBooksBookIdRoute
+  '/authors': typeof AuthenticatedAuthorsIndexRoute
+  '/books': typeof AuthenticatedBooksIndexRoute
+  '/series': typeof AuthenticatedSeriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/books/$bookId': typeof BooksBookIdRoute
-  '/authors': typeof AuthorsIndexRoute
-  '/books': typeof BooksIndexRoute
-  '/series': typeof SeriesIndexRoute
+  '/login': typeof LoginIndexRoute
+  '/books/$bookId': typeof AuthenticatedBooksBookIdRoute
+  '/authors': typeof AuthenticatedAuthorsIndexRoute
+  '/books': typeof AuthenticatedBooksIndexRoute
+  '/series': typeof AuthenticatedSeriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/books/$bookId': typeof BooksBookIdRoute
-  '/authors/': typeof AuthorsIndexRoute
-  '/books/': typeof BooksIndexRoute
-  '/series/': typeof SeriesIndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/login/': typeof LoginIndexRoute
+  '/_authenticated/books/$bookId': typeof AuthenticatedBooksBookIdRoute
+  '/_authenticated/authors/': typeof AuthenticatedAuthorsIndexRoute
+  '/_authenticated/books/': typeof AuthenticatedBooksIndexRoute
+  '/_authenticated/series/': typeof AuthenticatedSeriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/books/$bookId' | '/authors' | '/books' | '/series'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/books/$bookId'
+    | '/authors'
+    | '/books'
+    | '/series'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/books/$bookId' | '/authors' | '/books' | '/series'
-  id: '__root__' | '/' | '/books/$bookId' | '/authors/' | '/books/' | '/series/'
+  to: '/' | '/login' | '/books/$bookId' | '/authors' | '/books' | '/series'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/login/'
+    | '/_authenticated/books/$bookId'
+    | '/_authenticated/authors/'
+    | '/_authenticated/books/'
+    | '/_authenticated/series/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BooksBookIdRoute: typeof BooksBookIdRoute
-  AuthorsIndexRoute: typeof AuthorsIndexRoute
-  BooksIndexRoute: typeof BooksIndexRoute
-  SeriesIndexRoute: typeof SeriesIndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  LoginIndexRoute: typeof LoginIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -88,43 +125,66 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/series/': {
-      id: '/series/'
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/series/': {
+      id: '/_authenticated/series/'
       path: '/series'
       fullPath: '/series'
-      preLoaderRoute: typeof SeriesIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedSeriesIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
-    '/books/': {
-      id: '/books/'
+    '/_authenticated/books/': {
+      id: '/_authenticated/books/'
       path: '/books'
       fullPath: '/books'
-      preLoaderRoute: typeof BooksIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedBooksIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
-    '/authors/': {
-      id: '/authors/'
+    '/_authenticated/authors/': {
+      id: '/_authenticated/authors/'
       path: '/authors'
       fullPath: '/authors'
-      preLoaderRoute: typeof AuthorsIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedAuthorsIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
-    '/books/$bookId': {
-      id: '/books/$bookId'
+    '/_authenticated/books/$bookId': {
+      id: '/_authenticated/books/$bookId'
       path: '/books/$bookId'
       fullPath: '/books/$bookId'
-      preLoaderRoute: typeof BooksBookIdRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthenticatedBooksBookIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedBooksBookIdRoute: typeof AuthenticatedBooksBookIdRoute
+  AuthenticatedAuthorsIndexRoute: typeof AuthenticatedAuthorsIndexRoute
+  AuthenticatedBooksIndexRoute: typeof AuthenticatedBooksIndexRoute
+  AuthenticatedSeriesIndexRoute: typeof AuthenticatedSeriesIndexRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedBooksBookIdRoute: AuthenticatedBooksBookIdRoute,
+  AuthenticatedAuthorsIndexRoute: AuthenticatedAuthorsIndexRoute,
+  AuthenticatedBooksIndexRoute: AuthenticatedBooksIndexRoute,
+  AuthenticatedSeriesIndexRoute: AuthenticatedSeriesIndexRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BooksBookIdRoute: BooksBookIdRoute,
-  AuthorsIndexRoute: AuthorsIndexRoute,
-  BooksIndexRoute: BooksIndexRoute,
-  SeriesIndexRoute: SeriesIndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  LoginIndexRoute: LoginIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

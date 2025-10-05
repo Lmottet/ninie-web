@@ -1,12 +1,12 @@
-import { bookQueryOptions } from '../../data/queries/books/useBook';
-import { queryClient } from '../../main';
+import { bookQueryOptions } from '../../../data/queries/books/useBook';
+import { queryClient } from '../../../main';
 import { Button, Stack, Title } from '@mantine/core';
 import { modals } from '@mantine/modals';
 import { IconPlus } from '@tabler/icons-react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/books/$bookId')({
+export const Route = createFileRoute('/_authenticated/books/$bookId')({
   params: {
     parse: (params) => ({
       bookId: parseInt(params.bookId)
