@@ -1,6 +1,7 @@
 import type { LoginRequest } from '../../types/api/requests/LoginRequest';
-import axios from 'redaxios';
+import ky from 'ky';
+import { API_URL } from './apiUtils';
 
 export const loginApi = {
-  login: (request: LoginRequest) => axios.post<string>('http://localhost:10000/books', request).then((e) => e.data)
+  login: async (request: LoginRequest) => await ky.post<string>(`${API_URL}/login`, { json: request }).json()
 };

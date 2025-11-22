@@ -1,10 +1,11 @@
 import type { CreateBookRequest } from '../../types/api/requests/CreateBookRequest';
 import type { IBook } from '../../types/api/responses/IBook';
-import axios from 'redaxios';
+import { API_URL } from './apiUtils';
+import ky from 'ky';
 
 export const bookApi = {
-  fetch: () => axios.get<IBook[]>('http://localhost:10000/books').then((e) => e.data),
-  get: (id: number) => axios.get<IBook>(`http://localhost:10000/books/${id}`).then((e) => e.data),
+  fetch: async () => await ky.get<IBook[]>(`${API_URL}/books`).json(),
+  get: async (id: number) => await ky.get<IBook>(`${API_URL}/books/${id}`).json(),
 
-  create: (request: CreateBookRequest) => axios.post<IBook>('http://localhost:10000/books', request).then((e) => e.data)
+  create: async (request: CreateBookRequest) => await ky.post<IBook>(`${API_URL}/books`, { json: request }).json()
 };
