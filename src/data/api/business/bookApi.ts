@@ -1,6 +1,6 @@
-import type { CreateBookRequest } from '../../types/api/requests/CreateBookRequest';
-import type { IBook } from '../../types/api/responses/IBook';
-import { API_URL } from './apiUtils';
+import type { CreateBookRequest } from '../../../types/api/requests/CreateBookRequest';
+import type { IBook } from '../../../types/api/responses/IBook';
+import { API_URL } from '../apiUtils';
 import ky from 'ky';
 
 export const bookApi = {

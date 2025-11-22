@@ -1,6 +1,6 @@
-import type { CreateSeriesRequest } from '../../types/api/requests/CreateSeriesRequest';
-import type { ISeries } from '../../types/api/responses/ISeries';
-import { API_URL } from './apiUtils';
+import type { CreateSeriesRequest } from '../../../types/api/requests/CreateSeriesRequest';
+import type { ISeries } from '../../../types/api/responses/ISeries';
+import { API_URL } from '../apiUtils';
 import ky from 'ky';
 
 export const seriesApi = {

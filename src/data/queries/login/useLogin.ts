@@ -1,6 +1,6 @@
 import { useAppStore } from '../../../hooks/useAppStore';
 import type { LoginRequest } from '../../../types/api/requests/LoginRequest';
-import { loginApi } from '../../api/loginApi';
+import { loginApi } from '../../api/auth/loginApi';
 import { useMutation } from '@tanstack/react-query';
 
 export function useLogin() {

@@ -1,5 +1,5 @@
 import type { CreateBookRequest } from '../../../types/api/requests/CreateBookRequest';
-import { bookApi } from '../../api/bookApi';
+import { bookApi } from '../../api/business/bookApi';
 import { QueryKeys } from '../queryKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
